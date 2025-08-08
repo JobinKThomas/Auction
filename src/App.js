@@ -1,11 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import MyTournaments from './pages/MyTournamentsPage';
-import TournamentForm from './components/TournamentForm'
-// import CreateTournament from './pages/CreateTournament';
-// import ViewAuctions from './pages/ViewAuctions';
+import TournamentForm from './components/tournament/TournamentForm'
 import JoinPlayer from './pages/JoinPlayer';
 import Layout from './pages/Layout';
-import TournamentDetails from './pages/DetailsPage';
+import TournamentDetails from './pages/TournamentDetailsPage';
 
 function App() {
   return (

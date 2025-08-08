@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { tournamentSchema } from '../validationSchema';
+import { tournamentSchema } from '../../validationSchema';
 import {
   TextField,
   Button,

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import TournamentList from '../components/TournamentList';
+import TournamentList from '../components/tournament/TournamentList';
 import { Box, Button, Fab, TextField } from '@mui/material';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import { TOURNAMENTS } from '../assests/MockData/tournaments';
 import AddIcon from '@mui/icons-material/Add';
 import Tooltip from '@mui/material/Tooltip';
-import TournamentsModal from '../components/TournamentModal';
+import TournamentsModal from '../components/tournament/TournamentModal';
 import { useNavigate } from 'react-router-dom';
 
 const MyTournamentsPage = () => {

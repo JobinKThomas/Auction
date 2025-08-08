@@ -1,6 +1,6 @@
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import Sidebar from '../components/Sidebar';
-import Header from '../components/Header';
+import Sidebar from '../components/common/Sidebar';
+import Header from '../components/common/Header';
 import { useEffect, useState } from 'react';
 
 const Layout = () => {

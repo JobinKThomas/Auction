@@ -1,9 +1,9 @@
 // components/TabbedPanel.jsx
 import React, { useState } from 'react';
 import { Tabs, Tab, Box } from '@mui/material';
-import TeamList from './myTournament/Team/TeamList';
-import PlayerList from './myTournament/Player/PlayerList';
-import TournamentsPage from './myTournament/Tournament/TournamentsPage';
+import TeamList from './Team/TeamList';
+import PlayerList from './Player/PlayerList';
+import TournamentsPage from './Tournament/TournamentsPage';
 
 const TabbedPanel = () => {
   const [activeTab, setActiveTab] = useState(0);
