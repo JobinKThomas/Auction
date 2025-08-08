@@ -1,7 +1,7 @@
 // pages/TeamList.jsx
 import React from 'react';
 import TeamCard from './TeamCard';
-import { TEAMS } from '../../assests/MockData/tournaments';
+import { TEAMS } from '../../../assests/MockData/tournaments';
 
 const TeamList = () => {
   return (

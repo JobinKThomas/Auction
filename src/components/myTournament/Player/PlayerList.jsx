@@ -1,5 +1,5 @@
 import React from 'react';
-import { PLAYERS } from '../../assests/MockData/tournaments';
+import { PLAYERS } from '../../../assests/MockData/tournaments';
 import PlayerCard from './PlayerCard';
 
 const PlayerList = () => {
