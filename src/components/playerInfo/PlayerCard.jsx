@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useRef } from 'react';
 import Cropper from 'react-easy-crop';
-import getCroppedImg from './CropImage';
+import getCroppedImg from '../common/CropImage';
 import axios from 'axios';
 import {
   Box,

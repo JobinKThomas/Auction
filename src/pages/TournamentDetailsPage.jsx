@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { TOURNAMENTS } from '../assests/MockData/tournaments';
-import TabbedPanel from '../components/TabPanel';
+import TabbedPanel from '../components/myTournament/TabPanel';
 
 const TournamentDetails = () => {
   const { id } = useParams();
@@ -9,7 +9,6 @@ const TournamentDetails = () => {
   useEffect(() => {
     setData(TOURNAMENTS?.filter((item) => item?._id === id))
   }, [id])
-  console.log(data);
   
   return (
     <TabbedPanel />
