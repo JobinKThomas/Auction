@@ -1,9 +1,9 @@
 // components/TabbedPanel.jsx
 import React, { useState } from 'react';
 import { Tabs, Tab, Box } from '@mui/material';
-import TeamList from './Team/TeamList';
-import PlayerList from './Player/PlayerList';
-import TournamentsPage from './Tournament/TournamentsPage';
+import TeamList from './myTournament/Team/TeamList';
+import PlayerList from './myTournament/Player/PlayerList';
+import TournamentsPage from './myTournament/Tournament/TournamentsPage';
 
 const TabbedPanel = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -32,7 +32,6 @@ const TabbedPanel = () => {
         )}
         {activeTab === 2 && (
           <div className="text-gray-700 text-lg">
-            <h2 className="text-xl font-semibold mb-2">Player List</h2>
             <TournamentsPage />
           </div>
         )}
