@@ -7,7 +7,7 @@ const pageMap = {
   "/my-tournaments": "My Tournaments",
   "/create-tournament": "Create Tournament",
   "/view-auctions": "View Auctions",
-  "/join-player": "Join as Player",
+  "/join-as-player": "Join as Player",
 };
 
 export default function Layout() {
