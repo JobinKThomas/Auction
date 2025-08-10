@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import TournamentList from '../components/tournament/TournamentList';
-import { Box, Button, Fab, TextField } from '@mui/material';
-import RestartAltIcon from '@mui/icons-material/RestartAlt';
-import { TOURNAMENTS } from '../assests/MockData/tournaments';
-import AddIcon from '@mui/icons-material/Add';
-import Tooltip from '@mui/material/Tooltip';
-import TournamentsModal from '../components/tournament/TournamentModal';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import TournamentList from "../components/tournament/TournamentList";
+import { Box, Button, Fab, TextField } from "@mui/material";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import { TOURNAMENTS } from "../assests/MockData/tournaments";
+import AddIcon from "@mui/icons-material/Add";
+import Tooltip from "@mui/material/Tooltip";
+import TournamentsModal from "../components/tournament/TournamentModal";
+import { useNavigate } from "react-router-dom";
 
 const MyTournamentsPage = () => {
   const navigate = useNavigate();
 
-  const [searchTitle, setSearchTitle] = useState('');
-  const [debouncedTitle, setDebouncedTitle] = useState('');
+  const [searchTitle, setSearchTitle] = useState("");
+  const [debouncedTitle, setDebouncedTitle] = useState("");
   const [openModal, setOpenModal] = useState(false);
 
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
-  
+
   const handleEdit = (id) => {
     console.log("Edit tournament:", id);
   };
@@ -27,57 +27,61 @@ const MyTournamentsPage = () => {
   };
 
   const viewTournament = (id) => {
-   navigate(`/my-tournament/${id}`)
-  }
+    navigate(`/my-tournament/${id}`);
+  };
 
   useEffect(() => {
-  const handler = setTimeout(() => {
-    setDebouncedTitle(searchTitle);
-  }, 300);
+    const handler = setTimeout(() => {
+      setDebouncedTitle(searchTitle);
+    }, 300);
 
-  return () => {
-    clearTimeout(handler);
-  };
-}, [searchTitle]);
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchTitle]);
 
   const filteredData = TOURNAMENTS.filter((item) => {
-  return (
-    (!debouncedTitle || item.title.toLowerCase().includes(debouncedTitle.toLowerCase()))
-  );
-});
+    return (
+      !debouncedTitle ||
+      item.title.toLowerCase().includes(debouncedTitle.toLowerCase())
+    );
+  });
 
   return (
     <div className="p-4">
-      <h1 className="text-3xl font-bold mb-6">My Tournaments</h1>
-      <Box className="flex flex-col sm:flex-row gap-4 mb-6">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">
+        My Tournaments
+      </h1>
+
+      <Box className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-6 flex-wrap">
         <TextField
           label="Search by Title"
           variant="outlined"
           size="small"
           value={searchTitle}
           onChange={(e) => setSearchTitle(e.target.value)}
-          className="w-full sm:w-1/2"
+          className="w-full sm:w-64 md:w-80"
         />
         <Button
           variant="contained"
           color="secondary"
           size="small"
           startIcon={<RestartAltIcon />}
-          onClick={() => {
-            setSearchTitle('');
-          }}
+          onClick={() => setSearchTitle("")}
           disabled={!searchTitle}
           className="w-full sm:w-auto"
         >
           Reset Filters
         </Button>
       </Box>
+
       <TournamentList
         tournaments={filteredData}
         onEdit={handleEdit}
         onDelete={handleDelete}
         viewTournament={viewTournament}
       />
+
       <Tooltip title="Create Tournament" placement="left">
         <Fab
           color="primary"
@@ -88,7 +92,11 @@ const MyTournamentsPage = () => {
           <AddIcon />
         </Fab>
       </Tooltip>
-      <TournamentsModal openModal={openModal} handleCloseModal={handleCloseModal} />
+
+      <TournamentsModal
+        openModal={openModal}
+        handleCloseModal={handleCloseModal}
+      />
     </div>
   );
 };
