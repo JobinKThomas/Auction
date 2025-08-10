@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { tournamentSchema } from '../../validationSchema';
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { tournamentSchema } from "../../validationSchema";
 import {
   TextField,
   Button,
@@ -9,7 +9,7 @@ import {
   Typography,
   Box,
   InputLabel,
-} from '@mui/material';
+} from "@mui/material";
 
 const TournamentForm = () => {
   const [imagePreview, setImagePreview] = useState(null);
@@ -23,7 +23,7 @@ const TournamentForm = () => {
     resolver: yupResolver(tournamentSchema),
   });
 
-  const imageFile = watch('image');
+  const imageFile = watch("image");
 
   useEffect(() => {
     if (imageFile && imageFile.length > 0) {
@@ -43,77 +43,90 @@ const TournamentForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-3xl mx-auto p-4 sm:p-6 bg-white shadow rounded"
+      className="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-lg space-y-5"
     >
-      <Typography variant="h5" gutterBottom className="font-semibold">
+      {/* Title */}
+      <Typography
+        variant="h5"
+        className="font-bold text-xl sm:text-2xl border-b pb-2"
+      >
         Create Tournament
       </Typography>
 
-      <Grid container spacing={2}>
-        {[
-          ['title', 'Title'],
-          ['subtitle', 'Subtitle'],
-          ['date', 'Date'],
-          ['season', 'Season'],
-          ['teamLimit', 'Team Limit'],
-          ['playerLimit', 'Player Limit'],
-          ['contact', 'Contact Number'],
-        ].map(([name, label]) => (
-          <Grid item xs={12} sm={6} key={name}>
-            <TextField
-              label={label}
-              type={
-                name === 'date'
-                  ? 'date'
-                  : name.includes('Limit') || name === 'contact'
-                  ? 'number'
-                  : 'text'
-              }
-              fullWidth
-              variant="outlined"
-              InputLabelProps={name === 'date' ? { shrink: true } : {}}
-              error={Boolean(errors[name])}
-              helperText={errors[name]?.message}
-              {...register(name)}
-            />
-          </Grid>
-        ))}
-
-        {/* Image Upload */}
-        <Grid item xs={12}>
-          <InputLabel className="mb-1 font-medium">Tournament Image</InputLabel>
-          <input
-            type="file"
-            accept="image/*"
-            {...register('image')}
-            className="w-full"
-          />
-          {errors.image && (
-            <p className="text-red-500 text-sm mt-1">{errors.image.message}</p>
-          )}
-          {imagePreview && (
-            <Box className="mt-2">
-              <img
-                src={imagePreview}
-                alt="Preview"
-                className="h-32 w-32 object-cover rounded"
-              />
-            </Box>
-          )}
-        </Grid>
-
-        {/* Submit Button */}
-        <Grid item xs={12}>
-          <Button
-            type="submit"
-            variant="contained"
+      {/* Input Fields */}
+      {[
+        ["title", "Title"],
+        ["subtitle", "Subtitle"],
+        ["date", "Date"],
+        ["season", "Season"],
+        ["teamLimit", "Team Limit"],
+        ["playerLimit", "Player Limit"],
+        ["contact", "Contact Number"],
+      ].map(([name, label]) => (
+        <div key={name} className="w-full">
+          <TextField
+            label={label}
+            type={
+              name === "date"
+                ? "date"
+                : name.includes("Limit") || name === "contact"
+                ? "number"
+                : "text"
+            }
             fullWidth
-            className="!bg-blue-600 hover:!bg-blue-700 text-white"
-          >
-            Submit
-          </Button>
-        </Grid>
-      </Grid>
+            variant="outlined"
+            InputLabelProps={name === "date" ? { shrink: true } : {}}
+            error={Boolean(errors[name])}
+            helperText={errors[name]?.message}
+            {...register(name)}
+            inputProps={{
+              className: "text-sm sm:text-base",
+            }}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                borderRadius: "0.5rem",
+              },
+            }}
+          />
+        </div>
+      ))}
+
+      {/* Image Upload */}
+      <div className="w-full">
+        <InputLabel className="mb-2 font-medium text-gray-700">
+          Tournament Image
+        </InputLabel>
+        <input
+          type="file"
+          accept="image/*"
+          {...register("image")}
+          className="w-full border border-gray-300 rounded-md p-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        {errors.image && (
+          <p className="text-red-500 text-xs mt-1">{errors.image.message}</p>
+        )}
+        {imagePreview && (
+          <div className="mt-3 flex justify-center sm:justify-start">
+            <img
+              src={imagePreview}
+              alt="Preview"
+              className="h-28 w-28 sm:h-32 sm:w-32 object-cover rounded-lg border"
+            />
+          </div>
+        )}
+      </div>
+
+      {/* Submit Button */}
+      <div className="w-full">
+        <Button
+          type="submit"
+          variant="contained"
+          fullWidth
+          className="!bg-blue-600 hover:!bg-blue-700 text-white text-sm sm:text-base py-3 rounded-lg shadow-md"
+        >
+          Submit
+        </Button>
+      </div>
     </form>
   );
 };

@@ -1,21 +1,44 @@
-import React from 'react';
-import { Grid, Typography, Button, Box, CardActions, CardMedia, Card } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import React from "react";
+import {
+  Grid,
+  Typography,
+  Button,
+  Box,
+  CardActions,
+  CardMedia,
+  Card,
+} from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const TournamentList = ({ tournaments, onEdit, onDelete, viewTournament }) => {
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} justifyContent="start">
       {tournaments.map((tournament) => {
         const dateObj = new Date(tournament.date);
         const date = dateObj.toLocaleDateString();
-        const time = dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const time = dateObj.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
 
         return (
-          <Grid item xs={12} sm={12} md={6} lg={4} xl={3} key={tournament._id}>
+          <Grid item xs={12} key={tournament._id}>
             <Card
               elevation={3}
-              className="rounded-xl overflow-hidden shadow-md p-4 transition-transform transform hover:scale-[1.015] hover:shadow-xl cursor-pointer w-full"
+              sx={{
+                width: "100%",
+                maxWidth: { sm: 320 },
+                borderRadius: "0.75rem",
+                overflow: "hidden",
+                p: 2,
+                transition: "transform 0.2s, box-shadow 0.2s",
+                "&:hover": {
+                  transform: "scale(1.015)",
+                  boxShadow: 6,
+                  cursor: "pointer",
+                },
+              }}
               onClick={() => viewTournament(tournament._id)}
             >
               <Box className="flex justify-between text-sm text-gray-600 mb-2">
@@ -28,21 +51,35 @@ const TournamentList = ({ tournaments, onEdit, onDelete, viewTournament }) => {
                   component="img"
                   image={tournament.logo}
                   alt={tournament.title}
-                  className="w-24 h-24 object-cover rounded-md"
+                  sx={{
+                    width: 96,
+                    height: 96,
+                    objectFit: "cover",
+                    borderRadius: "0.375rem",
+                  }}
                 />
 
                 <Box className="flex flex-col">
-                  <Typography variant="h6" className="font-bold">
+                  <Typography variant="h6" fontWeight="bold">
                     {tournament.title}
                   </Typography>
                   <Typography variant="subtitle2" color="text.secondary">
                     {tournament.subtitle}
                   </Typography>
-                  <Typography variant="body2">Season: {tournament.season}</Typography>
+                  <Typography variant="body2">
+                    Season: {tournament.season}
+                  </Typography>
                 </Box>
               </Box>
 
-              <CardActions className="flex justify-end gap-2 mt-4">
+              <CardActions
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  gap: 1,
+                  mt: 2,
+                }}
+              >
                 <Button
                   variant="outlined"
                   size="small"

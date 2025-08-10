@@ -1,52 +1,72 @@
 // components/TeamCard.jsx
-import React, { useState } from 'react';
-import { Card, CardContent, CardMedia, Typography, Avatar, Divider, Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
+import React, { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Avatar,
+  Divider,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+} from "@mui/material";
 
 const TeamCard = ({ teamData }) => {
-    const [open, setOpen] = useState(false);
-  
+  const [open, setOpen] = useState(false);
+
   return (
     <>
-    <Card className="rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 w-full cursor-pointer"
-      onClick={() => setOpen(true)}
-    >
-      <CardMedia
-        component="img"
-        height="160"
-        image={teamData.team.image}
-        alt={teamData.team.name}
-        className="rounded-t-2xl"
-      />
-      <CardContent className="space-y-3">
-        {/* Team Name */}
-        <Typography variant="h6" className="font-bold text-center text-blue-700">
-          🛡 {teamData.team.name}
-        </Typography>
+      <Card
+        className="rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 w-full cursor-pointer"
+        onClick={() => setOpen(true)}
+      >
+        <CardMedia
+          component="img"
+          height="160"
+          image={teamData.team.image}
+          alt={teamData.team.name}
+        />
+        <CardContent className="space-y-3">
+          {/* Team Name */}
+          <Typography
+            variant="h6"
+            className="font-bold text-center text-blue-700"
+          >
+            🛡 {teamData.team.name}
+          </Typography>
 
-        <Divider />
+          <Divider />
 
-        {/* Owner Info */}
-        <div className="flex items-center space-x-4">
-          <Avatar alt={teamData.owner.name} src={teamData.owner.image} />
-          <div>
-            <Typography variant="body1" className="font-semibold">
-              👤 Owner: {teamData.owner.name}
-            </Typography>
+          {/* Owner Info */}
+          <div className="flex items-center space-x-4">
+            <Avatar alt={teamData.owner.name} src={teamData.owner.image} />
+            <div>
+              <Typography variant="body1" className="font-semibold">
+                👤 Owner: {teamData.owner.name}
+              </Typography>
+            </div>
           </div>
-        </div>
 
-        {/* Icon Info */}
-        <div className="flex items-center space-x-4">
-          <Avatar alt={teamData.icon.name} src={teamData.icon.image} />
-          <div>
-            <Typography variant="body1" className="font-semibold">
-              ⭐ Icon: {teamData.icon.name}
-            </Typography>
+          {/* Icon Info */}
+          <div className="flex items-center space-x-4">
+            <Avatar alt={teamData.icon.name} src={teamData.icon.image} />
+            <div>
+              <Typography variant="body1" className="font-semibold">
+                ⭐ Icon: {teamData.icon.name}
+              </Typography>
+            </div>
           </div>
-        </div>
-      </CardContent>
+        </CardContent>
       </Card>
-      <Dialog open={open} onClose={() => setOpen(false)} maxWidth="sm" fullWidth>
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        maxWidth="sm"
+        fullWidth
+      >
         <DialogTitle className="text-center font-bold text-blue-700">
           🛡 {teamData.team.name}
         </DialogTitle>
@@ -86,8 +106,12 @@ const TeamCard = ({ teamData }) => {
 
           {/* Additional Details (Optional) */}
           <div className="pt-4">
-            <Typography variant="body2">🎯 Player Limit: {teamData.playerLimit}</Typography>
-            <Typography variant="body2">💰 Purse Limit: ₹{teamData.purseLimit}</Typography>
+            <Typography variant="body2">
+              🎯 Player Limit: {teamData.playerLimit}
+            </Typography>
+            <Typography variant="body2">
+              💰 Purse Limit: ₹{teamData.purseLimit}
+            </Typography>
           </div>
         </DialogContent>
         <DialogActions className="justify-center pb-4">
@@ -96,7 +120,7 @@ const TeamCard = ({ teamData }) => {
           </Button>
         </DialogActions>
       </Dialog>
-      </>
+    </>
   );
 };
 
