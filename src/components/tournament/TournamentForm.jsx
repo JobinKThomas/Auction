@@ -10,6 +10,7 @@ import {
   Box,
   InputLabel,
 } from "@mui/material";
+import axios from "axios";
 
 const TournamentForm = () => {
   const [imagePreview, setImagePreview] = useState(null);
@@ -36,8 +37,26 @@ const TournamentForm = () => {
     }
   }, [imageFile]);
 
-  const onSubmit = (data) => {
-    // Save to backend or Redux
+  const onSubmit = async (data) => {
+    // const formData = new FormData();
+    // const date = new Date(data.date);
+    // const formatted = date.toISOString().split("T")[0];
+    // formData.append("title", data.title);
+    // formData.append("subtitle", data.subtitle);
+    // formData.append("date", formatted);
+    // formData.append("season", data.season);
+    // formData.append("teamLimit", data.teamLimit);
+    // formData.append("playerLimit", data.playerLimit);
+    // formData.append("contact", data.contact);
+
+    // try {
+    //   await axios.post('http://localhost:5000/api/tournaments', formData,
+    //     {
+    //       headers: { "Content-Type": "application/json" }
+    //     }
+    //   );
+    // } catch (err) {
+    // }
   };
 
   return (
