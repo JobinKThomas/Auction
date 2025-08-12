@@ -2,18 +2,22 @@ import React, { useEffect, useState } from "react";
 import TournamentList from "../components/tournament/TournamentList";
 import { Box, Button, Fab, TextField } from "@mui/material";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
-import { TOURNAMENTS } from "../assests/MockData/tournaments";
 import AddIcon from "@mui/icons-material/Add";
 import Tooltip from "@mui/material/Tooltip";
 import TournamentsModal from "../components/tournament/TournamentModal";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTournaments } from "../store/tournamentSlice";
 
 const MyTournamentsPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { list } = useSelector((state) => state.tournament);
 
   const [searchTitle, setSearchTitle] = useState("");
   const [debouncedTitle, setDebouncedTitle] = useState("");
   const [openModal, setOpenModal] = useState(false);
+  const [tournament, setTournaments] = useState([]);
 
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
@@ -40,12 +44,21 @@ const MyTournamentsPage = () => {
     };
   }, [searchTitle]);
 
-  const filteredData = TOURNAMENTS.filter((item) => {
-    return (
-      !debouncedTitle ||
-      item.title.toLowerCase().includes(debouncedTitle.toLowerCase())
-    );
-  });
+  useEffect(() => {
+    if (list.length) {
+      const filteredData = list?.filter((item) => {
+      return (
+        !debouncedTitle ||
+        item.title.toLowerCase().includes(debouncedTitle.toLowerCase())
+      );
+      });
+      setTournaments(filteredData)
+    }
+  }, [list, debouncedTitle])
+  
+  // useEffect(() => {
+  //   dispatch(fetchTournaments("9656000477"));
+  // },[])
 
   return (
     <div className="p-4">
@@ -76,7 +89,7 @@ const MyTournamentsPage = () => {
       </Box>
 
       <TournamentList
-        tournaments={filteredData}
+        tournaments={tournament}
         onEdit={handleEdit}
         onDelete={handleDelete}
         viewTournament={viewTournament}

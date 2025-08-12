@@ -19,7 +19,7 @@ export const tournamentSchema = yup.object().shape({
     .string()
     .matches(/^\d{10}$/, 'Contact must be 10 digits')
     .required('Contact number is required'),
-  image: yup
-    .mixed()
-    .test('required', 'Image is required', (value) => value && value.length > 0),
+  // image: yup
+  //   .mixed()
+  //   .test('required', 'Image is required', (value) => value && value.length > 0),
 });

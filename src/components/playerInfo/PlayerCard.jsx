@@ -190,6 +190,34 @@ const PlayerCard = (props) => {
           </CardContent>
         </Card>
       </Box>
+      <Dialog open={showCropper} onClose={() => setShowCropper(false)} fullWidth maxWidth="sm">
+        <DialogContent>
+          <Box position="relative" width="100%" height={400}>
+            <Cropper
+              image={image}
+              crop={crop}
+              zoom={zoom}
+              aspect={1}
+              cropShape="round"
+              onCropChange={setCrop}
+              onZoomChange={setZoom}
+              onCropComplete={onCropComplete}
+            />
+          </Box>
+          <Slider
+            value={zoom}
+            min={1}
+            max={3}
+            step={0.1}
+            onChange={(e, zoom) => setZoom(zoom)}
+            sx={{ mt: 2 }}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setShowCropper(false)}>Cancel</Button>
+          <Button onClick={handleCropDone} variant="contained" color="primary">Crop</Button>
+        </DialogActions>
+      </Dialog>
 
       {/* Keep your Dialog, Snackbar, etc. the same */}
     </form>

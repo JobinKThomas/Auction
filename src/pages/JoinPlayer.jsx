@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { TOURNAMENTS } from "../assests/MockData/tournaments";
 import TournamentCodeInput from "../components/common/CodeInput";
 import PlayerModal from "../components/playerInfo/PlayerModal";
+import { useSelector } from "react-redux";
 
 const JoinPlayer = () => {
+  const { list } = useSelector((state) => state.tournament);
+
   const inputLength = 6;
   const defaultValue = Array(inputLength).fill('')
   const [values, setValues] = useState(defaultValue);
@@ -15,8 +17,8 @@ const JoinPlayer = () => {
   
   
   const handleCodeEntered = (code) => {
-    const exists = TOURNAMENTS.some((item) => item.code === code);
-    const data = TOURNAMENTS?.filter((item) => item.code === code);
+    const exists = list.some((item) => item.code === code);
+    const data = list?.filter((item) => item.code === code);
     setTData(data)
     if (exists) {
       handleOpenModal()
